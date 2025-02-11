@@ -1,6 +1,12 @@
+import { ApiClient } from "../utils/apiHandler";
+import { calculateDiscountPrice } from "../utils/percentage_calc";
 import { Product_data } from "../utils/types";
+import { user } from "./Product";
 
-export function createProductPage(item: Product_data<T>, place: HTMLElement) {
+
+const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
+
+export function createProductPage(item: Product_data, place: HTMLElement) {
     const main_container = document.createElement("div");
     const mainData = document.createElement("section");
     const frames = document.createElement("div");
@@ -52,24 +58,7 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     descriptionCenter.classList.add("center");
     let img_length = 0
 
-    rightArrow.addEventListener('click', (e)=>{
-        e.preventDefault()
-        if (img_length == 5) {
-            return
-        } else {
-            img_length++
-            mainImage.src = item.media[img_length];
-        }
-    })
-    leftArrow.addEventListener('click', (e)=>{
-        e.preventDefault()
-        if (img_length == 0) {
-            return
-        } else {
-            img_length--
-            mainImage.src = item.media[img_length];
-        }
-    })
+
     /** 3️⃣ Придание внутреннего контента **/
     mainImage.src = item.media[img_length];
     mainImage.alt = "Просим прощения но компания скупилась на фотогорафию";
@@ -86,18 +75,15 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     if (item.salePercentage == 0) {
         originalPrice.innerHTML = "";
     } else {
-        originalPrice.innerHTML = `${price_og.toString()} рублей`;
+        originalPrice.innerHTML = `${price_og.toString()} сум`;
     }
 
-    const calculateDiscountPrice = (originalPrice: number, discountPercentage: number): number => {
-        const discountAmount = (originalPrice * discountPercentage) / 100;
-        return originalPrice - discountAmount;
-    };
+    
 
     const discountPercentage = item.salePercentage;
     let price_sale = calculateDiscountPrice(price_og, discountPercentage);
 
-    salePrice.innerHTML = price_sale.toFixed() + " рублей";
+    salePrice.innerHTML = price_sale.toFixed() + " сум";
 
     minus.innerText = "-";
     amount.innerText = "1";
@@ -108,13 +94,15 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     descriptionTitle.innerText = "Описание товара";
     descriptionText.innerText = item.description;
 
+
+
     /** Обработчики событий для счетчика **/
     let count = 1;
 
     const updatePrice = () => {
         amount.innerText = count.toString();
-        salePrice.innerText = (price_sale * count).toFixed() + " рублей";
-        originalPrice.innerText = item.salePercentage > 0 ? (price_og * count).toFixed() + " рублей" : "";
+        salePrice.innerText = (price_sale * count).toFixed() + " сум";
+        originalPrice.innerText = item.salePercentage > 0 ? (price_og * count).toFixed() + " сум" : "";
     };
 
     minus.addEventListener("click", () => {
@@ -125,12 +113,12 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     });
 
     plus.addEventListener("click", () => {
-       if (count === 35) {
-        return
-       }else{
-        count++;
-        updatePrice();
-       }
+        if (count === 35) {
+            return
+        } else {
+            count++;
+            updatePrice();
+        }
     });
 
     /** 4️⃣ Распределение по местам через append **/
@@ -138,17 +126,101 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     leftArrow.appendChild(leftArrowImg);
     mainFrame.append(mainImage, rightArrow, leftArrow);
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < item.media.length; i++) {
         const img = document.createElement("img");
+        img.style.transition = ".2s"
+
         img.src = item.media[i];
         img.alt = "";
+
+        if (i === 0) img.classList.add("active"); // Первому изображению сразу даем active
+
         column.appendChild(img);
 
-        img.onclick = () =>{
-            img_length = i
-            mainImage.src = item.media[i]
+        img.onclick = () => {
+            // Удаляем класс active у всех миниатюр
+            column.querySelectorAll("img").forEach((el) => el.classList.remove("active"));
+
+            // Добавляем active только текущему изображению
+            img.classList.add("active");
+
+            img_length = i;
+            mainImage.src = item.media[i];
+        };
+    }
+    const updateActiveThumbnail = () => {
+        column.querySelectorAll("img").forEach((el, index) => {
+            el.classList.toggle("active", index === img_length);
+        });
+    };
+    rightArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (img_length < item.media.length - 1) {
+            img_length++;
+            mainImage.src = item.media[img_length];
+            updateActiveThumbnail();
+        }
+    });
+
+    leftArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (img_length > 0) {
+            img_length--;
+            mainImage.src = item.media[img_length];
+            updateActiveThumbnail();
+        }
+    });
+
+//Часть добавления в изобранное
+    function setFavorite() {
+        if (user && user.favorites && user.favorites.some(fav => fav.id === item.id)) {
+            saveBtn.innerText = "Уже в изобранных"
+        } else {
+            saveBtn.innerText = "Добавить в избранное"
         }
     }
+
+    setFavorite()
+
+
+    async function updateFavorites(productData: Product_data, add: boolean) {
+        if (user) {
+            let favorites: Product_data[] = user.favorites || [];
+            if (add) {
+                if (!favorites.some(fav => fav.id === productData.id)) {
+                    favorites.push(productData);
+
+                }
+            } else {
+                favorites = favorites.filter(fav => fav.id !== productData.id);
+
+            }
+            try {
+                const updatedUser = await apiCall.update(`/users/${user.id}`, { favorites });
+                user.favorites = updatedUser.favorites;
+                setFavorite()
+                // Диспатчим событие, чтобы перерисовать favorites секцию
+                window.dispatchEvent(new CustomEvent("favoritesUpdated"));
+            } catch (error) {
+                console.error("Ошибка обновления избранного:", error);
+            }
+        }
+    }
+
+    saveBtn.onclick = (event) => {
+        event.stopPropagation();
+        if (user && user.favorites && user.favorites.some(fav => fav.id === item.id)) {
+            updateFavorites(item, false);
+
+
+        } else {
+            updateFavorites(item, true);
+        }
+    };
+
+
+
+
 
     frames.append(column, mainFrame);
     price.append(salePrice, originalPrice);
@@ -163,6 +235,6 @@ export function createProductPage(item: Product_data<T>, place: HTMLElement) {
     main_container.append(mainData, descriptionSection);
     place.append(main_container);
     console.log(place);
-    
+
     return place;
 }

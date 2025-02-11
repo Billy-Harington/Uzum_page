@@ -1,5 +1,16 @@
-export function Header(item:string) {
+import { user } from "../components/Product";
+import { ApiClient } from "../utils/apiHandler";
+
+
+const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
+
+// Предварительный запрос для получения актуальных данных пользователя
+const updatedUser = await apiCall.read(`/users/${user?.id}`);
+
+export function Header(item: string) {
     const header = document.createElement("header");
+    
+    // Создаем элементы header
     const logoLink = document.createElement("a");
     const logoImg = document.createElement("img");
     const catalogBtn = document.createElement("button");
@@ -16,39 +27,52 @@ export function Header(item:string) {
     const deletedBox = document.createElement("div");
     const deletedLink = document.createElement("a");
     const deletedCount = document.createElement("p");
- 
 
-
-    logoLink.href = "#";
+    // Настройка атрибутов и классов
+    logoLink.href = "/";
     logoImg.src = "/logo.png";
     logoImg.alt = "Логотип";
-    catalogBtn.classList.add("header_btn");
     
-    catalogBtn.id = "catalog"
-
+    catalogBtn.classList.add("header_btn");
+    catalogBtn.id = "catalog";
     catalogBtn.textContent = "Каталог";
+
     inputBox.classList.add("input_box");
     searchInput.type = "search";
     searchInput.placeholder = "Искать товар";
     searchIcon.classList.add("search");
     searchIcon.src = "/search_icon.png";
     searchIcon.alt = "Поиск";
+
     menu.classList.add("menu");
     userData.classList.add("user_data");
     userLink.href = "#";
     userImg.src = "/user_icon.png";
     userImg.alt = "Пользователь";
-    userName.textContent = item
-    savedLink.href = "/src/pages/saved_page/";
+    userName.textContent = item;
+
     savedLink.textContent = "Избранное";
+    savedLink.onclick = () => {
+        location.assign('/src/pages/saved_page/');
+    };
+
     deletedBox.classList.add("deleted");
-    deletedLink.href = "/src/pages/deleted_page/";
     deletedLink.textContent = "Корзина";
+    deletedLink.onclick = () => {
+        location.assign('/src/pages/deleted_page/');
+    };
     deletedCount.classList.add("deleted_count");
-    deletedCount.textContent = "0";
+    
+    // Первоначальное значение количества товаров в корзине
+    deletedCount.textContent = updatedUser?.cart.length.toString();
 
+    // Добавляем слушатель глобального события для обновления количества товаров в корзине
+    window.addEventListener("cartUpdated", async () => {
+        const newUser = await apiCall.read(`/users/${user?.id}`);
+        deletedCount.textContent = newUser?.cart.length.toString();
+    });
 
-   
+    // Сборка структуры header
     logoLink.appendChild(logoImg);
     inputBox.appendChild(searchInput);
     inputBox.appendChild(searchIcon);
@@ -65,7 +89,56 @@ export function Header(item:string) {
     header.appendChild(catalogBtn);
     header.appendChild(inputBox);
     header.appendChild(nav);
-    
+
+    // Пример диалога для каталога (опционально)
+    catalogBtn.onclick = () => {
+        const dialog = document.createElement("dialog");
+        dialog.classList.add("catalog");
+
+        const exit = document.createElement('h1');
+        exit.textContent = "X";
+        exit.classList.add("exit");
+        exit.onclick = () => {
+            dialog.close();
+            dialog.remove();
+        };
+
+        const title = document.createElement("p");
+        title.textContent = "Категории товаров";
+
+        const container = document.createElement("div");
+        container.classList.add("container");
+
+        const categories = ["Бытовая техника", "Одежда", "Электроника", "Книги"];
+        categories.forEach(categoryName => {
+            const category = document.createElement("div");
+            category.classList.add("category");
+
+            const h1 = document.createElement("h1");
+            h1.textContent = categoryName;
+
+            const h2 = document.createElement("h2");
+            h2.textContent = "33 товара";
+
+            category.appendChild(h1);
+            category.appendChild(h2);
+            container.appendChild(category);
+        });
+
+        dialog.append(title, exit, container);
+        document.body.appendChild(dialog);
+        dialog.showModal();
+
+        const rect = catalogBtn.getBoundingClientRect();
+        dialog.style.top = `${rect.bottom + window.scrollY}px`;
+        dialog.style.left = `${rect.left + window.scrollX}px`;
+    };
+
+    // Обработчик клика для выхода (авторизации)
+    userLink.onclick = () => {
+        localStorage.clear();
+        location.assign("/src/pages/signin/");
+    };
+
     return header;
 }
-

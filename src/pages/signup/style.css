@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+.register_container {
+    padding: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    h2 {
+       
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 59.42px;
+
+
+        text-decoration-skip-ink: none;
+        margin-bottom: 10px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+       text-align: left;
+       
+    }
+
+    input {
+        width: 438px;
+        height: 56px;
+        padding-left: 10px;
+        border-radius: 10px;
+
+        
+     
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.6px;
+
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        transition: 0.4s ease;
+        border: 2px solid black
+    }
+    span{
+        color: red;
+        font-size: 16px;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    input:hover {
+        transform: scale(1.02);
+    }
+
+    button {
+        width: 438px;
+        height: 56px;
+
+        background: #7000FF;
+        color: #EAEAF9;
+
+
+        border-radius: 15px;
+        border: none;
+
+        transition: .5s;
+
+        
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        background: #EAEAF9;
+        color: #7000FF;
+        border: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #7000FF;
+        font-family: Gilroy;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 22.28px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}

@@ -12,7 +12,7 @@ export class ApiClient {
                 // 'Authorization': `Bearer ${import.meta.env.VITE_PUBLIC_API_TOKEN}`
             },
         });
-    }
+    } 
 
     // Create: Добавить новый ресурс (POST)
     async create<T>(endpoint: string, data: T): Promise<T> {

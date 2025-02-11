@@ -4,10 +4,11 @@ import { ApiClient } from "./utils/apiHandler";
 import { reload } from "./utils/reload";
 import { Product_data } from "./utils/types";
 
-document.body.prepend(Header("Billy Harington"));
+export const localed = JSON.parse(localStorage.getItem('user')as any) 
+document.body.prepend(Header(localed.name));
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
-const goods = await apiCall.read('/goods') as Array<T>;
+const goods = await apiCall.read('/goods') as Array<Product_data>;
 
 const places = {
   popular: document.querySelector('.popular_products_container'),
@@ -36,7 +37,7 @@ const renderProducts = () => {
 
   productConfig.forEach(({ type, limit, place }) => {
     if (place) {
-      reload<Product_data<T>>({
+      reload<Product_data>({
         arr: type === "popular" ? goods.slice(0, limit) : getProductsByType(type, limit),
         commponent: Product,
         place
@@ -47,6 +48,8 @@ const renderProducts = () => {
 
 
 renderProducts();
+
+
 
 
 showMoreBtn.onclick = () => {

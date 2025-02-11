@@ -172,18 +172,20 @@
                 transition: .4s;
                 border-radius: 4px;
             }
-
+            .save,
             .purchase {
+                background-color: transparent;
+                color: #7000FF;
+                border: 1px solid #7000FF;
+                transition: .4s;
+            }
+
+            .purchase:hover,
+            .save:hover{
                 background-color: #7000FF;
                 color: white;
             }
-
-            .save {
-                color: #7000FF;
-                border: 1px solid #7000FF;
-                background-color: transparent;
-
-            }
+           
 
         }
     }

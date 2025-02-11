@@ -5,25 +5,29 @@ import { ApiClient } from "../../utils/apiHandler";
 import { reload } from "../../utils/reload";
 import { Product_data } from "../../utils/types";
 
-document.body.prepend(Header("Billy Harington"));
+const localed = JSON.parse(localStorage.getItem('user') as string);
+document.body.prepend(Header(localed.name));
 
-const pageId = Number(location.search.split('=').at(-1)); // Приводим к числу
+const pageId = location.search.split('=').slice(-1)[0]; 
+
+
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
-const goods = await apiCall.read('/goods') as Array<T>;
+const goods = await apiCall.read('goods') as Array<Product_data>;
 const page_place = document.querySelector('.important') as HTMLElement;
 const popular_place = document.querySelector('.popular_products_container') as HTMLElement;
 
 goods.find((item) => {
-    if (item.id === pageId) { // Сравнение чисел
+    if (item.id == +pageId) { // Сравнение чисел
         console.log(item);
+        
         createProductPage(item, page_place);
-        return true; // Найденный элемент завершит `find`
+        return true;
     }
     return false; // Для остальных элементов
 });
 
-reload<Product_data<T>>({
+reload<Product_data>({
     arr: goods.slice(0,5),
     commponent: Product,
     place: popular_place,
