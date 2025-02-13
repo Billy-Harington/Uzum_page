@@ -36,3 +36,24 @@ export async function updateFavorites(productData: Product_data, add: boolean,sa
         }
     }
 }
+export async function updateFavoritesOther(productData: Product_data, add: boolean) {
+    if (user) {
+        let favorites: Product_data[] = user.favorites || [];
+        if (add) {
+            if (!favorites.some(fav => fav.id === productData.id)) {
+                favorites.push(productData);
+            }
+        } else {
+            favorites = favorites.filter(fav => fav.id !== productData.id);
+        }
+        try {
+            const updatedUser = await apiCall.update(`/users/${user.id}`, { favorites });
+            user.favorites = updatedUser.favorites;
+           
+            // Диспатчим событие, чтобы перерисовать favorites секцию
+            window.dispatchEvent(new CustomEvent("favoritesUpdated"));
+        } catch (error) {
+            console.error("Ошибка обновления избранного:", error);
+        }
+    }
+}

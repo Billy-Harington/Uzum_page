@@ -44,7 +44,8 @@ form.onsubmit = async (e: SubmitEvent) => {
         surname: fm.get("surname")?.toString() || "",
         password: fm.get("password")?.toString() || "",
         favorites: [],
-        cart: []
+        cart: [],
+        
     };
 
     const data: any = await api_call.read(`/users?email=${user.email}`);

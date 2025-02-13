@@ -1,11 +1,12 @@
 import { user } from "../components/Product";
 import { ApiClient } from "../utils/apiHandler";
+import { User_data } from "../utils/types";
 
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
 
 // Предварительный запрос для получения актуальных данных пользователя
-const updatedUser = await apiCall.read(`/users/${user?.id}`);
+const updatedUser = await apiCall.read<User_data>(`/users/${user?.id}`);
 
 export function Header(item: string) {
     const header = document.createElement("header");
@@ -38,7 +39,7 @@ export function Header(item: string) {
     catalogBtn.textContent = "Каталог";
 
     inputBox.classList.add("input_box");
-    searchInput.type = "search";
+    searchInput.type = "text";
     searchInput.placeholder = "Искать товар";
     searchIcon.classList.add("search");
     searchIcon.src = "/search_icon.png";
@@ -59,7 +60,7 @@ export function Header(item: string) {
     deletedBox.classList.add("deleted");
     deletedLink.textContent = "Корзина";
     deletedLink.onclick = () => {
-        location.assign('/src/pages/deleted_page/');
+        location.assign('/src/pages/cart_page/');
     };
     deletedCount.classList.add("deleted_count");
     
@@ -68,7 +69,7 @@ export function Header(item: string) {
 
     // Добавляем слушатель глобального события для обновления количества товаров в корзине
     window.addEventListener("cartUpdated", async () => {
-        const newUser = await apiCall.read(`/users/${user?.id}`);
+        const newUser = await apiCall.read<User_data>(`/users/${user?.id}`);
         deletedCount.textContent = newUser?.cart.length.toString();
     });
 

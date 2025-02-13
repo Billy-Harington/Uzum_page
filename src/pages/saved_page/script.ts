@@ -8,7 +8,7 @@ const localed = JSON.parse(localStorage.getItem('user') as string);
 document.body.prepend(Header(localed.name));
 
 const savedPlace = document.querySelector('.furniture_products_container') as HTMLElement;
-const section = document.querySelector('.popular') as HTMLElement;
+ const section = document.querySelector('.popular') as HTMLElement;
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
 const goods = await apiCall.read('/users') as Array<User_data>;

@@ -1,0 +1,84 @@
+@media (max-width: 1024px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+    }
+    /* Меняем порядок элементов */
+    header > *:not(nav) {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    header .input_box {
+      width: 100%;
+    }
+    header .input_box input {
+      width: 100%;
+      max-width: 400px;
+      height: 40px;
+    }
+    header .menu {
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+    }
+    header .header_btn {
+      width: 100%;
+      max-width: 150px;
+    }
+  }
+  
+  /* Для экранов до 768px (мобильные, маленькие планшеты) */
+  @media (max-width: 768px) {
+    header {
+      padding: 10px 10px;
+    }
+    header .input_box input {
+      width: 100%;
+      max-width: 300px;
+      height: 36px;
+      font-size: 14px;
+    }
+    header .header_btn {
+      width: 100%;
+      max-width: 150px;
+    }
+    header .menu {
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    /* Если нужно, можно уменьшить размер логотипа */
+    header a img {
+      max-width: 150px;
+    }
+  }
+  
+  /* Для экранов до 480px (очень маленькие устройства) */
+  @media (max-width: 480px) {
+    header {
+      padding: 8px 5px;
+    }
+    header .input_box input {
+      max-width: 250px;
+      font-size: 12px;
+    }
+    header .header_btn {
+      width: 100%;
+      max-width: 130px;
+      font-size: 12px;
+    }
+    header .menu a {
+      font-size: 12px;
+    }
+    header .menu .deleted .deleted_count {
+      width: 16px;
+      height: 16px;
+      font-size: 10px;
+    }
+    header .menu {
+      gap: 5px;
+    }
+  }

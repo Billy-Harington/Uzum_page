@@ -15,6 +15,7 @@ export type Product_data = {
     salePercentage: number;
     media: string[]; // Тоже исправляем
     type: string;
+    number:number
 };
 
 export interface User {
@@ -25,6 +26,7 @@ export interface User {
     password: string;
     favorites: Array<Product_data>; // или, если нужно хранить больше информации – массив объектов
     cart: Array<Product_data>;
+  
 }
 export type User_data = {
     id: string;
@@ -34,6 +36,7 @@ export type User_data = {
     password: string;
     favorites: Array<Product_data>; // или, если нужно хранить больше информации – массив объектов
     cart: Array<Product_data>;
+    
 }
 
   
