@@ -1,5 +1,5 @@
-import { updateCart, updateCartOther } from "../utils/add_cart";
-import { ApiClient } from "../utils/apiHandler";
+import { updateCartOther } from "../utils/add_cart";
+
 import { calculateDiscountPrice } from "../utils/percentage_calc";
 import { Product_data } from "../utils/types";
 

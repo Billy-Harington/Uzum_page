@@ -399,17 +399,17 @@ dialog p {
       gap: 10px;
 
       .column {
+        height: auto;
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        overflow-y: hidden;
           img{
               width: 83px;
               height: 111px;
           }
-          height: auto;
-          display: flex;
-          gap: 5px;
-          flex-direction: column;
-          flex-wrap: nowrap;
-
-          overflow-y: hidden;
 
       }
 
@@ -1086,7 +1086,11 @@ dialog p {
   .main_frame img{
     width: 300px;
   }
- 
+ .column{
+
+ flex-direction: row;
+  gap: 5px;
+ }
  
 }
      
