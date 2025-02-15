@@ -33,14 +33,14 @@ export function Cart_product(item: Product_data) {
     plus.innerText = "+";
 
     // Начальная цена с учётом скидки * count
-    p.innerText = `${calculateDiscountPrice(item.price, item.salePercentage) * count} сум`;
+    p.innerText = `${Math.round(calculateDiscountPrice(item.price, item.salePercentage) * count)} сум`;
 
     minus.onclick = (e) => {
         e.stopPropagation();
         if (count > 1) {
             count--;
             amount.innerText = String(count);
-            p.innerText = `${calculateDiscountPrice(item.price, item.salePercentage) * count} сум`;
+            p.innerText = `${Math.round(calculateDiscountPrice(item.price, item.salePercentage) * count)} сум`;
             window.dispatchEvent(new Event("cartChanged"));
         }
     };
@@ -50,7 +50,7 @@ export function Cart_product(item: Product_data) {
         if (count < 99) {
             count++;
             amount.innerText = String(count);
-            p.innerText = `${calculateDiscountPrice(item.price, item.salePercentage) * count} сум`;
+            p.innerText = `${Math.round(calculateDiscountPrice(item.price, item.salePercentage) * count)} сум`;
             window.dispatchEvent(new Event("cartChanged"));
         }
     };

@@ -379,23 +379,31 @@ dialog p {
 
 }
 
+
+.important {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
 .main_data {
   width: 1200px;
   margin: 10px auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+
   gap: 40px;
 
   .frames {
       display: flex;
-      gap: 85px;
+      gap: 10px;
 
       .column {
           img{
               width: 83px;
               height: 111px;
           }
-          height: 490px;
+          height: auto;
           display: flex;
           gap: 5px;
           flex-direction: column;
@@ -406,15 +414,15 @@ dialog p {
       }
 
       .main_frame {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
           img {
               width: 400px;
               height: 490px;
               
           }
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          position: relative;
 
       }
 
@@ -448,10 +456,10 @@ dialog p {
   }
 
   .data {
-      padding-top: 35px;
+      padding: 35px 45px 0 0 ;
       display: flex;
       flex-direction: column;
-
+    
       .price {
           display: flex;
           gap: 10px;
@@ -751,23 +759,81 @@ dialog p {
 
 @media (max-width: 1300px) {
   header {
-    width: 100%;
-    padding: 15px 30px;
+    width: auto;
+    padding: 15px 10px;
+  
+    justify-content: space-between;
+    .header_btn{
+      margin: 0 20px;
+      
+    }
+    .menu{
+      max-width: auto;
+      gap: 2px;
+    }
   }
   header .input_box input {
-    width: 450px;
+    width: 425px;
   }
   .search{
     right: 90%;
+  }
+
+  .popular{
+    width: auto;
+   
+   
+       .products_container{
+      width: auto;
+         gap: 10px;
+         padding: 0 50px 0 70px; 
+        
+         .product{
+         width: auto;
+         .product_img{
+          width: auto;
+         }
+         }
+       }
+     }
+
+
+     .main_data{
+      width: auto;
+      padding: 0 10px;
+      .data{
+  
+    
+        p{
+          width: auto;
+        
+      }
+      
+      }
+     }
+
+
+
+
+  .cart{
+    max-width: 1200px;
+    width: auto;
+    .cart_container{
+      max-width: 706px;
+
+    }
+    .cart_info{
+      max-width: 394px;
+    }
   }
 }
 
 /* Для экранов до 1024px (планшеты, небольшие ноутбуки) */
 @media (max-width: 1024px) {
   header {
-    max-width: 1024px;
+    max-width: 990px;
    display: grid;
-   grid-template-columns: repeat(4,1fr);
+   grid-template-columns: repeat(3,1fr);
    grid-template-rows: auto;
    justify-content: center;
     padding: 15px 20px;
@@ -800,6 +866,96 @@ dialog p {
  display: none;
  
   }
+  .popular{
+ width: auto;
+
+
+    .products_container{
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      padding: 0 50px 0 70px; 
+     
+      .product{
+
+        width: auto;
+        p{
+          font-size: 12px;
+        }
+        h1{
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .important {
+    max-width: 990px;
+    margin: 20px auto;
+    padding: 0  0 0 150px;
+  } 
+  .main_data {
+    width: 100%;
+    margin: 10px auto;
+    /* Переходим с двух колонок на блочный макет */
+    display: block;
+  }
+  .frames {
+    /* Выводим изображения в блоковом формате */
+    margin-bottom: 20px;
+  }
+  .frames .main_frame img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+  .frames .column img {
+    width: 70px;
+    height: 95px;
+  }
+  .data {
+    max-width: 100%;
+    padding: 20px 10px 0;
+  }
+  .right_arrow{
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-40%);
+  }
+  .left_arrow{
+    top: 40%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+  .data p {
+    width: 100%;
+    font-size: 14px;
+  }
+  /* Центрируем основные блоки */
+  .important,
+  .main_data,
+  .data {
+    text-align: center;
+  }
+  .description{
+   width: auto;
+  }
+
+
+
+
+  .cart{
+    max-width: 990px;
+    .cart_container{
+      width: 600px;
+
+    }
+    .cart_info{
+      width: 250px;
+
+    }
+  }
+
 }
 
 /* Для экранов до 768px (мобильные, маленькие планшеты) */
@@ -831,6 +987,109 @@ dialog p {
   header a img {
     max-width: 150px;
   }
+  .popular{
+    width: auto;
+   
+   
+       .products_container{
+         grid-template-columns: repeat(3, 1fr);
+         gap: 15px;
+         padding: 0 50px 0 70px; 
+        
+         .product{
+          width: 200px ;
+          
+          .product_img{
+            width: 200px;
+          }
+          p{
+            font-size: 12px;
+          }
+          .save{
+           top: 20px;
+           right: 35px;
+          }
+         }
+       }
+     }
+
+     .frames{
+      display: flex;
+      gap: 0;
+      .main_frame img{
+        width: auto;
+       }
+     }
+}
+@media (max-width: 680px) {
+  header {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    padding: 10px 10px;
+  }
+  header .input_box input {
+    width: 100%;
+    max-width: 350px;
+    height: 36px;
+    font-size: 14px;
+  }
+  header .header_btn {
+    width: 100%;
+    max-width: 100px;
+    margin-left: 5px;
+    text-align: center;
+  }
+  header .menu {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  /* Если нужно, можно уменьшить размер логотипа */
+  header a img {
+    max-width: 150px;
+  }
+  .popular{
+    width: auto;
+   
+   
+       .products_container{
+         grid-template-columns: repeat(2, 1fr);
+         gap: 15px;
+         padding: 0 50px 0 70px; 
+        
+         .product{
+          width: 200px ;
+          
+          .product_img{
+            width: 200px;
+          }
+          p{
+            font-size: 12px;
+          }
+          .save{
+           top: 20px;
+           right: 35px;
+          }
+         }
+       }
+     }
+
+
+     .important{
+      padding: 0 0 0 40px;
+     }
+.frames{
+  flex-direction: column;
+  gap: 10px;
+  max-width: 550px;
+  .main_frame img{
+    width: 300px;
+  }
+ 
+ 
+}
+     
 }
 
 /* Для экранов до 480px (очень маленькие устройства) */
@@ -862,4 +1121,30 @@ dialog p {
   header .menu {
     gap: 5px;
   }
+  .popular{
+    width: auto;
+   
+   
+       .products_container{
+         grid-template-columns: repeat(2, 1fr);
+         gap: 15px;
+         padding: 0 50px 0 70px; 
+        
+         .product{
+          width: 190px ;
+         
+          
+          .product_img{
+            width: 190px;
+          }
+          p{
+            font-size: 10px;
+          }
+          .save{
+           top: 20px;
+           right: 35px;
+          }
+         }
+       }
+     }
 }
