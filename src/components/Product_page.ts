@@ -1,11 +1,11 @@
 import {  updateCartOther } from "../utils/add_cart";
 import { updateFavoritesOther } from "../utils/add_favorites";
-import { ApiClient } from "../utils/apiHandler";
+
 import { calculateDiscountPrice } from "../utils/percentage_calc";
 import { Product_data } from "../utils/types";
 import { user } from "./Product";
 
-const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
+
 
 export function createProductPage(item: Product_data, place: HTMLElement) {
     const main_container = document.createElement("div");
