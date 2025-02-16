@@ -4,35 +4,42 @@ import { ApiClient } from "../../utils/apiHandler";
 import { reload } from "../../utils/reload";
 import { Product_data, User_data } from "../../utils/types";
 
-const localed = JSON.parse(localStorage.getItem('user') as string);
-document.body.prepend(Header(localed.name));
-
-const savedPlace = document.querySelector('.furniture_products_container') as HTMLElement;
- const section = document.querySelector('.popular') as HTMLElement;
-
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
-const goods = await apiCall.read('/users') as Array<User_data>;
 
+let user: User_data | undefined;
 
-export const user = goods.find(u => u.id === localed.id);
+async function loadUser() {
+    try {
+        const localed = JSON.parse(localStorage.getItem("user") || "{}");
+        document.body.prepend(Header(localed.name));
 
+        const goods = await apiCall.read("/users") as User_data[];
+        user = goods.find(u => u.id === localed.id);
 
-export function renderFavorites(): void {
-  if (!user || !user.favorites || user.favorites.length === 0) {
-    section.innerHTML = "";
-    const img = document.createElement('img');
-    img.classList.add('empty_page');
-    img.src = "/if_emptyPic.png";
-    section.append(img);
-  } else {
-    // favorites в user имеет тип Product_data[]
-    reload<Product_data>({
-      arr: user.favorites,
-      commponent: Product,
-      place: savedPlace
-    });
-  }
+        renderFavorites();
+    } catch (error) {
+        console.error("Ошибка загрузки данных пользователя:", error);
+    }
 }
 
- renderFavorites();
- 
+const savedPlace = document.querySelector(".furniture_products_container") as HTMLElement;
+const section = document.querySelector(".popular") as HTMLElement;
+
+export function renderFavorites(): void {
+    if (!user || !user.favorites || user.favorites.length === 0) {
+        section.innerHTML = "";
+        const img = document.createElement("img");
+        img.classList.add("empty_page");
+        img.src = "/if_emptyPic.png";
+        section.append(img);
+    } else {
+        reload<Product_data>({
+            arr: user.favorites,
+            commponent: Product,
+            place: savedPlace
+        });
+    }
+}
+
+// Загружаем пользователя перед рендером
+loadUser();

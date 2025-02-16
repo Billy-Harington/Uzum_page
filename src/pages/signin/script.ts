@@ -42,7 +42,7 @@ form.onsubmit = async (e: Event) => {
         password: fm.get("password")?.toString() || "",
     };
 
-    try {
+    try  {
         const data: any = await api_call.read(`/users?email=${user.email}`);
         
         if (data.length === 0) {

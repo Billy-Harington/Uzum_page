@@ -5,30 +5,30 @@ import { ApiClient } from "../../utils/apiHandler";
 import { reload } from "../../utils/reload";
 import { Product_data } from "../../utils/types";
 
-const localed = JSON.parse(localStorage.getItem('user') as string);
-document.body.prepend(Header(localed.name));
+async function Page_load () {
+    const localed = JSON.parse(localStorage.getItem("user") || "{}");
+    document.body.prepend(Header(localed.name));
 
-const pageId = location.search.split('=').slice(-1)[0]; 
+    const pageId = location.search.split("=").slice(-1)[0];
 
+    const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
+    const goods = await apiCall.read("goods") as Product_data[];
 
+    const page_place = document.querySelector(".important") as HTMLElement;
+    const popular_place = document.querySelector(".popular_products_container") as HTMLElement;
 
-const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
-const goods = await apiCall.read('goods') as Array<Product_data>;
-const page_place = document.querySelector('.important') as HTMLElement;
-const popular_place = document.querySelector('.popular_products_container') as HTMLElement;
-
-goods.find((item) => {
-    if (item.id == +pageId) { // Сравнение чисел
-        console.log(item);
-        
-        createProductPage(item, page_place);
-        return true;
+    const foundProduct = goods.find(item => String(item.id) === pageId);
+    console.log(foundProduct);
+    
+    if (foundProduct) {
+       
+        createProductPage(foundProduct, page_place);
     }
-    return false; // Для остальных элементов
-});
 
-reload<Product_data>({
-    arr: goods.slice(0,5),
-    commponent: Product,
-    place: popular_place,
-});
+    reload<Product_data>({
+        arr: goods.slice(0, 5),
+        commponent: Product,
+        place: popular_place,
+    });
+}
+Page_load();
