@@ -1,17 +1,38 @@
 import { user } from "../components/Product";
 import { ApiClient } from "../utils/apiHandler";
-import { User_data } from "../utils/types";
+import { catalog } from "../utils/catalog";
+import { Product_data, User_data } from "../utils/types";
 
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
+const goods = await apiCall.read('/goods/') as Array<Product_data>;
 
-// Предварительный запрос для получения актуальных данных пользователя
+
+const uniqueTypes = new Set<string>();
+
+goods.forEach((product) => {
+  uniqueTypes.add(product.type);
+});
+
+
+const typesArray = Array.from(uniqueTypes);
+console.log(typesArray);
+
+const typeCounts = goods.reduce((acc: Record<string, number>, product) => {
+    
+    acc[product.type] = (acc[product.type] || 0) + 1;
+    return acc;
+  }, {});
+  
+  console.log(typeCounts);
+
+
 const updatedUser = await apiCall.read<User_data>(`/users/${user?.id}`);
 
 export function Header(item: string) {
     const header = document.createElement("header");
     
-    // Создаем элементы header
+    
     const logoLink = document.createElement("a");
     const logoImg = document.createElement("img");
     const catalogBtn = document.createElement("button");
@@ -29,7 +50,7 @@ export function Header(item: string) {
     const deletedLink = document.createElement("a");
     const deletedCount = document.createElement("p");
 
-    // Настройка атрибутов и классов
+   
     logoLink.href = "/";
     logoImg.src = "/logo.png";
     logoImg.alt = "Логотип";
@@ -64,16 +85,16 @@ export function Header(item: string) {
     };
     deletedCount.classList.add("deleted_count");
     
-    // Первоначальное значение количества товаров в корзине
+    
     deletedCount.textContent = updatedUser?.cart.length.toString();
 
-    // Добавляем слушатель глобального события для обновления количества товаров в корзине
+  
     window.addEventListener("cartUpdated", async () => {
         const newUser = await apiCall.read<User_data>(`/users/${user?.id}`);
         deletedCount.textContent = newUser?.cart.length.toString();
     });
 
-    // Сборка структуры header
+   
     logoLink.appendChild(logoImg);
     inputBox.appendChild(searchInput);
     inputBox.appendChild(searchIcon);
@@ -91,55 +112,62 @@ export function Header(item: string) {
     header.appendChild(inputBox);
     header.appendChild(nav);
 
-    // Пример диалога для каталога (опционально)
+   
     catalogBtn.onclick = () => {
-        const dialog = document.createElement("dialog");
-        dialog.classList.add("catalog");
-
-        const exit = document.createElement('h1');
-        exit.textContent = "X";
-        exit.classList.add("exit");
-        exit.onclick = () => {
-            dialog.close();
-            dialog.remove();
-        };
-
-        const title = document.createElement("p");
-        title.textContent = "Категории товаров";
-
-        const container = document.createElement("div");
-        container.classList.add("container");
-
-        const categories = ["Бытовая техника", "Одежда", "Электроника", "Книги"];
-        categories.forEach(categoryName => {
-            const category = document.createElement("div");
-            category.classList.add("category");
-
-            const h1 = document.createElement("h1");
-            h1.textContent = categoryName;
-
-            const h2 = document.createElement("h2");
-            h2.textContent = "33 товара";
-
-            category.appendChild(h1);
-            category.appendChild(h2);
-            container.appendChild(category);
-        });
-
-        dialog.append(title, exit, container);
-        document.body.appendChild(dialog);
-        dialog.showModal();
-
-        const rect = catalogBtn.getBoundingClientRect();
-        dialog.style.top = `${rect.bottom + window.scrollY}px`;
-        dialog.style.left = `${rect.left + window.scrollX}px`;
+        catalog(typeCounts)
     };
 
-    // Обработчик клика для выхода (авторизации)
+   
     userLink.onclick = () => {
         localStorage.clear();
         location.assign("/src/pages/signin/");
     };
+
+
+  // ============= ЛОГИКА ПОИСКА =============
+ 
+  const suggestionsContainer = document.createElement("div");
+  suggestionsContainer.classList.add("search_suggestions");
+  inputBox.appendChild(suggestionsContainer);
+
+ 
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+   
+    if (!query) {
+      suggestionsContainer.innerHTML = "";
+      suggestionsContainer.style.display = "none";
+      return;
+    }
+
+   
+    const results = goods.filter((product) =>
+      product.title.toLowerCase().includes(query)
+    );
+
+    suggestionsContainer.innerHTML = "";
+
+    // Если результатов нет
+    if (results.length === 0) {
+      const p = document.createElement("p");
+      p.textContent = "Ничего не найдено";
+      suggestionsContainer.appendChild(p);
+    } else {
+      
+      results.forEach((product) => {
+        const p = document.createElement("p");
+        p.textContent = product.title;
+       
+        p.onclick = () => {
+          location.assign(`/src/pages/product_page/?id=${product.id}`);
+        };
+        suggestionsContainer.appendChild(p);
+      });
+    }
+ 
+    suggestionsContainer.style.display = "block";
+  });
 
     return header;
 }

@@ -18,7 +18,7 @@ async function Page_load () {
     const popular_place = document.querySelector(".popular_products_container") as HTMLElement;
 
     const foundProduct = goods.find(item => String(item.id) === pageId);
-    console.log(foundProduct);
+    
     
     if (foundProduct) {
        

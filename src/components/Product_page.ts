@@ -37,7 +37,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     const descriptionCenter = document.createElement("div");
     const descriptionText = document.createElement("p");
 
-    /** 2️⃣ Придание классов и ID **/
+   
     mainData.classList.add("main_data");
     frames.classList.add("frames");
     column.classList.add("column");
@@ -59,7 +59,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     descriptionCenter.classList.add("center");
     let img_length = 0;
 
-    /** 3️⃣ Придание внутреннего контента **/
+    
     mainImage.src = item.media[img_length];
     mainImage.alt = "Просим прощения, но компания скупилась на фотографии";
     rightArrow.href = "#";
@@ -92,7 +92,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     descriptionTitle.innerText = "Описание товара";
     descriptionText.innerText = item.description;
 
-    /** Обработчики событий для счетчика **/
+   
     let count = 1;
 
     const updatePrice = () => {
@@ -117,7 +117,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
         }
     });
 
-    /** 4️⃣ Распределение по местам через append **/
+
     rightArrow.appendChild(rightArrowImg);
     leftArrow.appendChild(leftArrowImg);
     mainFrame.append(mainImage, rightArrow, leftArrow);
@@ -158,7 +158,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
         }
     });
 
-    // Часть добавления в избранное
+  
     function setFavorite() {
         if (user && user.favorites.some(fav => fav.id === item.id)) {
             saveBtn.innerText = "Добавлено в избранные";
@@ -168,7 +168,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     }
     setFavorite();
 
-    // Часть добавления в корзину
+    
     function setCart() {
         if (user && user.cart.some(cartItem => cartItem.id === item.id)) {
             purchaseBtn.innerText = "Добавлено в корзину";
@@ -178,7 +178,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     }
     setCart();
 
-    // Обработчики для кнопок добавления
+    
     saveBtn.onclick = async (event) => {
         event.stopPropagation();
         if (user && user.favorites && user.favorites.some(cartItem => cartItem.id === item.id)) {
@@ -186,7 +186,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
         } else {
             await updateFavoritesOther(item, true);
         }
-        // После ожидания обновления корзины вызываем setCart для обновления текста кнопки
+     
         setFavorite();
     };
     
@@ -198,7 +198,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
         } else {
             await updateCartOther(item, true);
         }
-        // После ожидания обновления корзины вызываем setCart для обновления текста кнопки
+
         setCart();
     };
     
@@ -213,7 +213,7 @@ export function createProductPage(item: Product_data, place: HTMLElement) {
     descriptionSection.append(descriptionTitle, descriptionCenter);
     main_container.append(mainData, descriptionSection);
     place.append(main_container);
-    console.log(place);
+    
 
     return place;
 }

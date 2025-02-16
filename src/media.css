@@ -4,7 +4,6 @@
       align-items: flex-start;
       padding: 15px 20px;
     }
-    /* Меняем порядок элементов */
     header > *:not(nav) {
       width: 100%;
       text-align: center;

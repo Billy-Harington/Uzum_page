@@ -4,6 +4,16 @@ import { ApiClient } from "./utils/apiHandler";
 import { reload } from "./utils/reload";
 import { Product_data } from "./utils/types";
 
+
+
+
+
+
+
+
+
+
+
 (async function () {
     const localed = JSON.parse(localStorage.getItem("user") || "{}");
     document.body.prepend(Header(localed.name));

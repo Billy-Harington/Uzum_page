@@ -1,6 +1,6 @@
 import { ApiClient } from "../utils/apiHandler";
 import { Product_data } from "../utils/types";
-import { user } from "../components/Product"; // если пользователь уже экспортируется оттуда
+import { user } from "../components/Product"; 
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
 
@@ -18,14 +18,14 @@ export async function updateCart(productData: Product_data, add: boolean,purchas
         let cart: Product_data[] = user.cart || [];
         if (add) {
 
-            // Если товара еще нет в корзине, добавляем его
+
             if (!cart.some(item => item.id === productData.id)) {
                 cart.push(productData);
             }
         } else {
             console.log("works");
             
-            // Удаляем товар из корзины с приведением id к строке для корректного сравнения
+          
             cart = cart.filter(item => item.id.toString() !== productData.id.toString());
         }
         try {
@@ -50,7 +50,7 @@ export async function updateCartOther(productData: Product_data, add: boolean) {
         } else {
             console.log("works");
             
-            // Удаляем товар из корзины с приведением id к строке для корректного сравнения
+          
             cart = cart.filter(item => item.id.toString() !== productData.id.toString());
         }
         try {

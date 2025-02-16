@@ -22,7 +22,6 @@ header {
   z-index: 1;
   background-color: white;
   border-bottom: 1px solid #D9D9D9;
-
   .header_btn {
     width: 82px;
     height: 32px;
@@ -129,80 +128,94 @@ header {
   color: #EAEAF9;
 }
 
-#catalog {
-  position: relative;
-}
 
-dialog {
+.catalog {
   position: absolute;
-  top: 100%;
-  left: 0;
-  transform: translateY(5px);
-  padding: 15px;
-  border: none;
-  width: 300px;
+  /* Располагаем окно под кнопкой "Каталог":
+     - top указывает отступ сверху
+     - left можно подобрать под нужное смещение */
+  top: 10%; 
+  left: 10%;
+
+  /* Примерные размеры, как в скриншоте ~342×338 */
+  width: 342px;
+  min-height: 338px;
+
   background: #fff;
+  border: none;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  /* Добавляем внутренние отступы и расстояние между элементами */
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 
-  p {
-    position: relative;
-  }
-
-  .exit {
-    font-size: 12px;
-    position: absolute;
-    left: 90%;
-    transition: .4s;
-    cursor: pointer;
-  }
-
-  .exit:hover {
-    color: red;
-  }
-
+  /* Поверх всего остального контента */
+  z-index: 999;
 }
 
+/* Стили backdrop диалога */
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.7);
 }
 
-dialog p {
+/* Заголовок диалога (подпись "Категории товаров") */
+.catalog p {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 
-.container {
+/* Кнопка закрытия (X) */
+.catalog .exit {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 14px;
+  transition: .4s;
+  cursor: pointer;
+  font-weight: 600;
+}
+.catalog .exit:hover {
+  color: red;
+}
+
+/* Контейнер для списка категорий */
+.catalog .container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.category {
+/* Оформление категории */
+.catalog .category {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* Отступы и фон */
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
   background: #f5f5f5;
   transition: background 0.3s;
 }
-
-.category:hover {
+.catalog .category:hover {
   background: #e0e0e0;
 }
 
-.category h1 {
+/* Название категории */
+.catalog .category h1 {
   font-size: 16px;
   font-weight: 600;
+  margin-right: 10px;
 }
 
-.category h2 {
+/* Количество товаров */
+.catalog .category h2 {
   font-size: 12px;
   font-weight: 500;
   background: #7000FF;
@@ -210,6 +223,124 @@ dialog p {
   padding: 3px 8px;
   border-radius: 4px;
 }
+.search_suggestions {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none; 
+}
+.search_suggestions p {
+  margin: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.search_suggestions p:hover {
+  background-color: #f5f5f5;
+}
+
+
+.hero-slider {
+  width: 1250px;
+  margin: 0 auto;
+}
+
+.slider-container {
+  position: relative;
+  height: 474px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 84px;
+}
+
+.slider__track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.slider__item {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.slider__item h2 {
+  font-size: 55px;
+}
+
+.slider__item:nth-child(1) {
+  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+}
+
+.slider__item:nth-child(2) {
+  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+}
+
+.slider__item:nth-child(3) {
+  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+}
+
+.slider__item:nth-child(4) {
+  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+}
+
+.slider__control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.slider__control--prev {
+  left: 10px;
+}
+
+.slider__control--next {
+  right: 10px;
+}
+
+.slider__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.slider__dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider__dot--active {
+  background-color: white;
+}
+
 
 .popular {
   width: 1200px;
@@ -408,7 +539,7 @@ dialog p {
         overflow-y: hidden;
           img{
               width: 83px;
-              height: 111px;
+              height: auto;
           }
 
       }
@@ -420,7 +551,7 @@ dialog p {
         position: relative;
           img {
               width: 400px;
-              height: 490px;
+              height: auro;
               
           }
 
@@ -519,9 +650,9 @@ dialog p {
 
           button {
               width: 176px;
-              height: 32px;
-
-              font-size: 14px;
+              height: auto;
+            padding: 5px 0px ;
+              font-size: 13px;
               font-weight: 400;
               line-height: 19px;
 
@@ -632,12 +763,12 @@ dialog p {
     gap: 10px;
     position: relative;
     .cart_container {
-      padding: 43px 20px;
+      padding: 20px 10px;
       width: 806px;
       border: 1px solid #D9D9D9;
       border-radius: 10px;
       display: flex;
-      gap: 10px;
+     
       flex-direction: column;
 
       .cart_product {
@@ -662,7 +793,7 @@ dialog p {
 
 
           h1 {
-            max-width: 558px;
+            
             font-weight: 400;
             font-size: 18px;
             line-height: 24.26px;
@@ -719,7 +850,7 @@ dialog p {
 
       .final_price {
         font-weight: 500;
-        font-size: 30px;
+        font-size: 25px;
         line-height: 49px;
         letter-spacing: 0%;
 
@@ -732,7 +863,7 @@ dialog p {
 
         p {
           font-weight: 400;
-          font-size: 16px;
+          font-size: 14px;
           line-height: 19.41px;
           letter-spacing: 0%;
         }
@@ -896,11 +1027,10 @@ dialog p {
   .main_data {
     width: 100%;
     margin: 10px auto;
-    /* Переходим с двух колонок на блочный макет */
+    
     display: block;
   }
   .frames {
-    /* Выводим изображения в блоковом формате */
     margin-bottom: 20px;
   }
   .frames .main_frame img {
@@ -931,7 +1061,6 @@ dialog p {
     width: 100%;
     font-size: 14px;
   }
-  /* Центрируем основные блоки */
   .important,
   .main_data,
   .data {
@@ -952,6 +1081,7 @@ dialog p {
     }
     .cart_info{
       width: 250px;
+      padding: 10px 0;
 
     }
   }
@@ -983,7 +1113,6 @@ dialog p {
     align-items: center;
     gap: 5px;
   }
-  /* Если нужно, можно уменьшить размер логотипа */
   header a img {
     max-width: 150px;
   }
@@ -1020,6 +1149,25 @@ dialog p {
         width: auto;
        }
      }
+
+     .cart{
+      max-width: 700px;
+      .cart_body{
+        flex-direction: column;
+      }
+      .cart_container{
+        max-width: 650px;
+        margin: 0 auto;
+      }
+      .cart_info{
+        position: fixed;
+        
+        width: 250px;
+        padding: 10px 0;
+        margin: 0 auto;
+      }
+    }
+     
 }
 @media (max-width: 680px) {
   header {
@@ -1045,7 +1193,7 @@ dialog p {
     align-items: center;
     gap: 5px;
   }
-  /* Если нужно, можно уменьшить размер логотипа */
+ 
   header a img {
     max-width: 150px;
   }
@@ -1079,21 +1227,58 @@ dialog p {
      .important{
       padding: 0 0 0 40px;
      }
-.frames{
-  flex-direction: column;
-  gap: 10px;
-  max-width: 550px;
-  .main_frame img{
-    width: 300px;
-  }
- .column{
 
- flex-direction: row;
-  gap: 5px;
- }
- 
-}
+     .main_data {
+      width: auto;
+      margin: 10px auto;
      
+      .frames{
+        
+        flex-direction: column;
+        gap: 10px;
+        max-width: 550px;
+        .main_frame img{
+          width: 300px;
+        }
+        .column {
+          width: auto;
+          display: grid ;
+          grid-template-columns: repeat(5,1fr); 
+          gap: 5px;
+        }
+        .right_arrow img,
+        .left_arrow img {
+          width: 24px;
+          height: 24px;
+        }
+       
+      }
+     
+    }
+     
+    .cart{
+      max-width: 600px;
+      .cart_body{
+        flex-direction: column;
+      }
+      .cart_container{
+        max-width: 500px;
+        margin: 0 auto;
+       
+        
+      }
+      .cart_info{
+        position: fixed;
+        
+        width: 250px;
+        padding: 10px 0;
+        margin: 0 auto;
+      }
+    }
+    .cart .cart_container .cart_product h1 {
+      font-size: 14px !important;
+    }
+    
 }
 
 /* Для экранов до 480px (очень маленькие устройства) */
@@ -1151,4 +1336,58 @@ dialog p {
          }
        }
      }
+     .important{
+      .action_btns{
+        
+        button{
+          height: auto;
+          font-size: 12px;
+        }
+       }
+     }
+
+     
+     .cart {
+      max-width: 450px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+    
+    .cart .cart_body {
+      flex-direction: column;
+    }
+    
+    .cart .cart_container {
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+     
+    }
+    
+    .cart .cart_container .cart_product {
+      padding: 0 10px;
+    }
+    
+    .cart .cart_container .cart_product h1 {
+      font-size: 12px !important;
+    }
+    
+    .cart .cart_container .cart_product p {
+      font-size: 14px !important;
+    }
+    
+    .cart .cart_info {
+     
+      width: 250px;
+      max-width: 90%;
+      padding: 10px 0;
+      margin: 0 auto;
+      background: white;     
+      border: 1px solid #D9D9D9;
+      border-radius: 10px 10px 0 0;
+      z-index: 10;
+    }
+
+
 }
