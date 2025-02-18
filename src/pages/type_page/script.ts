@@ -12,6 +12,10 @@ const typeParam = params.get('type');
 
 let user: User_data | undefined;
 
+const h1 = document.querySelector('h1') as HTMLElement
+if (typeParam) {
+  h1.innerText = typeParam.charAt(0).toUpperCase()+ typeParam.slice(1)
+}
 // Функция для загрузки данных пользователя
 async function loadUser(): Promise<void> {
   try {
