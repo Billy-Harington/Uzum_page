@@ -2,6 +2,7 @@ import { Header } from "./components/Header";
 import { Product } from "./components/Product";
 import { ApiClient } from "./utils/apiHandler";
 import { reload } from "./utils/reload";
+import {  HeroSlider } from "./utils/swiper";
 import { Product_data } from "./utils/types";
 
 
@@ -9,7 +10,7 @@ import { Product_data } from "./utils/types";
 
 
 
-
+new HeroSlider(".slider-container");
 
 
 

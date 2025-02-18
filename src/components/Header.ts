@@ -16,7 +16,7 @@ goods.forEach((product) => {
 
 
 const typesArray = Array.from(uniqueTypes);
-console.log(typesArray);
+
 
 const typeCounts = goods.reduce((acc: Record<string, number>, product) => {
     
@@ -24,7 +24,7 @@ const typeCounts = goods.reduce((acc: Record<string, number>, product) => {
     return acc;
   }, {});
   
-  console.log(typeCounts);
+  
 
 
 const updatedUser = await apiCall.read<User_data>(`/users/${user?.id}`);

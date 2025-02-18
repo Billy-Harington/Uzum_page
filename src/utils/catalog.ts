@@ -48,6 +48,12 @@ function getProductWord(count: number): string {
       // h2 показывает количество товаров с правильным окончанием
       h2.textContent = `${count} ${getProductWord(count)}`;
   
+
+
+      categoryDiv.onclick = () =>{
+location.assign(`/src/pages/type_page/?type=${category}`)
+      }
+
       categoryDiv.appendChild(h1);
       categoryDiv.appendChild(h2);
       container.appendChild(categoryDiv);

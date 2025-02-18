@@ -249,6 +249,7 @@ dialog::backdrop {
 .hero-slider {
   width: 1250px;
   margin: 0 auto;
+  padding-top: 10px;
 }
 
 .slider-container {
@@ -285,19 +286,19 @@ dialog::backdrop {
 }
 
 .slider__item:nth-child(1) {
-  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+  background-image: url(https://images.uzum.uz/cupkqtk5j42bjc4etbjg/main_page_banner.jpg);
 }
 
 .slider__item:nth-child(2) {
-  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+  background-image: url(https://images.uzum.uz/cupkpkk5j42bjc4etav0/main_page_banner.jpg);
 }
 
 .slider__item:nth-child(3) {
-  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+  background-image: url(https://images.uzum.uz/cule2v6i4n324lr9f34g/main_page_banner.jpg);
 }
 
 .slider__item:nth-child(4) {
-  background-image: url(https://images.uzum.uz/cu91og5ht56ksubf2q90/main_page_banner.jpg);
+  background-image: url(https://images.uzum.uz/cug7q9tht56sc95cis1g/main_page_banner.jpg);
 }
 
 .slider__control {
@@ -332,7 +333,7 @@ dialog::backdrop {
 .slider__dot {
   width: 10px;
   height: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(179, 179, 179, 0.5);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -909,6 +910,18 @@ dialog::backdrop {
   .search{
     right: 90%;
   }
+  
+  .hero-slider {
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px;
+  }
+  .slider-container {
+    height: 450px;
+  }
+  .slider__item h2 {
+    font-size: 50px;
+  }
 
   .popular{
     width: auto;
@@ -997,6 +1010,18 @@ dialog::backdrop {
  display: none;
  
   }
+
+  .hero-slider {
+    max-width: 990px;
+    padding: 10px;
+  }
+  .slider-container {
+    height: 400px;
+  }
+  .slider__item h2 {
+    font-size: 45px;
+  }
+
   .popular{
  width: auto;
 
@@ -1116,6 +1141,21 @@ dialog::backdrop {
   header a img {
     max-width: 150px;
   }
+
+  .hero-slider {
+    max-width: 100%;
+    padding: 5px;
+  }
+  .slider-container {
+    height: 350px;
+  }
+  .slider__item h2 {
+    font-size: 35px;
+  }
+  .slider__control {
+    padding: 8px 15px;
+  }
+
   .popular{
     width: auto;
    
@@ -1222,6 +1262,26 @@ dialog::backdrop {
          }
        }
      }
+     .hero-slider {
+      max-width: 100%;
+      padding: 0;
+    }
+    .slider-container {
+      height: 300px;
+    }
+    .slider__item h2 {
+      font-size: 30px;
+    }
+    .slider__control {
+      padding: 6px 12px;
+    }
+    .slider__dots {
+      bottom: 5px;
+    }
+    .slider__dot {
+      width: 8px;
+      height: 8px;
+    }
 
 
      .important{
@@ -1254,6 +1314,10 @@ dialog::backdrop {
        
       }
      
+    }
+
+    .empty_page{
+      width: 300px;
     }
      
     .cart{

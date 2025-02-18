@@ -1148,23 +1148,6 @@
           "type": "мебель"
         },
         {
-          "id": "1",
-          "title": "Кресло компьютерное игровое Cougar ARMOR One Black-Orange",
-          "description": "Cougar Armor One — игровое компьютерное кресло с высокой спинкой, поддерживающей позвоночник в анатомически правильном положении. Обивка сделана из воздухопроницаемой экокожи. В комплекте есть подушки для шеи и поясницы. За счет стального каркаса эта модель выдерживает нагрузку до 120 кг. Стул оснащен механизмом регулировки высоты «Газлифт». Металлический кожух защищает его от преждевременной поломки. Специальные ручки предназначены для настройки степени сопротивления к раскачиванию и его полной блокировки. Конструкция раскладывается на 180°. Подлокотники поворачиваются вправо и влево, их можно поднимать и опускать.",
-          "colors": [
-            "black",
-            "orange"
-          ],
-          "rating": 4.1,
-          "price": 209999,
-          "isBlackFriday": false,
-          "salePercentage": 0,
-          "media": [
-            "https://img.mvideo.ru/Big/50138276bb.jpg"
-          ],
-          "type": "мебель"
-        },
-        {
           "id": "2",
           "title": "Кресло компьютерное игровое Red Square Pro Pure Black (RSQ-50020)",
           "description": "Red Square Pro Pure Black (RSQ-50020) — игровое компьютерное кресло с высокой спинкой, поддерживающей позвоночник в анатомически правильном положении. Обивка сделана из воздухопроницаемой экокожи. В комплекте есть подушки для шеи и поясницы. За счет стального каркаса эта модель выдерживает нагрузку до 120 кг. Стул оснащен механизмом регулировки высоты «Газлифт». Металлический кожух защищает его от преждевременной поломки. Специальные ручки предназначены для настройки степени сопротивления к раскачиванию и его полной блокировки. Конструкция раскладывается на 180°. Подлокотники поворачиваются вправо и влево, их можно поднимать и опускать.",
@@ -1177,6 +1160,23 @@
           "salePercentage": 0,
           "media": [
             "https://img.mvideo.ru/Big/50110498bb.jpg"
+          ],
+          "type": "мебель"
+        },
+        {
+          "id": "5",
+          "title": "Кресло компьютерное игровое ThunderX3 TC3 Azure Blue",
+          "description": "В кресле ThunderX3 TC3 ты будешь чувствовать себя уверенно круглый год. Вспененный наполнитель Air Tech и перфорированная обивка из экокожи свободно пропускают воздух и отводят лишнюю влагу. Благодаря этому ты можешь сосредоточиться на игре даже в самые жаркие дни.",
+          "colors": [
+            "black",
+            "blue"
+          ],
+          "rating": 5,
+          "price": 169999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/50143056bb1.jpg"
           ],
           "type": "мебель"
         }
@@ -1230,8 +1230,115 @@
             "https://img.mvideo.ru/Big/50110498bb.jpg"
           ],
           "type": "мебель"
+        },
+        {
+          "id": "5",
+          "title": "Кресло компьютерное игровое ThunderX3 TC3 Azure Blue",
+          "description": "В кресле ThunderX3 TC3 ты будешь чувствовать себя уверенно круглый год. Вспененный наполнитель Air Tech и перфорированная обивка из экокожи свободно пропускают воздух и отводят лишнюю влагу. Благодаря этому ты можешь сосредоточиться на игре даже в самые жаркие дни.",
+          "colors": [
+            "black",
+            "blue"
+          ],
+          "rating": 5,
+          "price": 169999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/50143056bb1.jpg"
+          ],
+          "type": "мебель"
         }
       ]
+    },
+    {
+      "id": "7fccb5ca-9394-4f7b-a0b2-2eba155d057c",
+      "email": "dsarifkulo022@gmail.com",
+      "name": "Шохрух",
+      "surname": "Kayfullaev",
+      "password": "$2b$10$aFIv0zXIUGWKHal/.jkoUODmfTaFXDR9C6hqO5Ze7qBpiWGq1tJkC",
+      "favorites": [
+        {
+          "id": "15",
+          "title": "Видеокарта GIGABYTE RTX3090 GAMING OC-24G + монитор AORUS FV43U-EK",
+          "description": "Комплект, в состав которого входят видеокарта Gigabyte RTX3090 Gaming OC-24G и монитор Aorus FV43U-EK, создан для требовательного геймера.",
+          "colors": [
+            "black"
+          ],
+          "rating": 5,
+          "price": 2699999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/30058010bb.jpg",
+            "https://img.mvideo.ru/Big/30058010bb1.jpg",
+            "https://img.mvideo.ru/Big/30058010bb2.jpg"
+          ],
+          "type": "ПК"
+        },
+        {
+          "id": "8",
+          "title": "Кресло компьютерное игровое Bloody GC-100",
+          "description": "Надоело проводить вечера перед монитором, ёрзая на неудобном стуле? Компания Bloody решила позаботиться о геймерах, готовых часами напролёт сражаться с врагами, решать головоломки, руководить бизнес-империями или полноценными армиями.",
+          "colors": [
+            "black",
+            "red"
+          ],
+          "rating": 4.3,
+          "price": 89999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/50136541bb1.jpg"
+          ],
+          "type": "мебель"
+        }
+      ],
+      "cart": [
+        {
+          "id": "15",
+          "title": "Видеокарта GIGABYTE RTX3090 GAMING OC-24G + монитор AORUS FV43U-EK",
+          "description": "Комплект, в состав которого входят видеокарта Gigabyte RTX3090 Gaming OC-24G и монитор Aorus FV43U-EK, создан для требовательного геймера.",
+          "colors": [
+            "black"
+          ],
+          "rating": 5,
+          "price": 2699999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/30058010bb.jpg",
+            "https://img.mvideo.ru/Big/30058010bb1.jpg",
+            "https://img.mvideo.ru/Big/30058010bb2.jpg"
+          ],
+          "type": "ПК"
+        },
+        {
+          "id": "8",
+          "title": "Кресло компьютерное игровое Bloody GC-100",
+          "description": "Надоело проводить вечера перед монитором, ёрзая на неудобном стуле? Компания Bloody решила позаботиться о геймерах, готовых часами напролёт сражаться с врагами, решать головоломки, руководить бизнес-империями или полноценными армиями.",
+          "colors": [
+            "black",
+            "red"
+          ],
+          "rating": 4.3,
+          "price": 89999,
+          "isBlackFriday": false,
+          "salePercentage": 0,
+          "media": [
+            "https://img.mvideo.ru/Big/50136541bb1.jpg"
+          ],
+          "type": "мебель"
+        }
+      ]
+    },
+    {
+      "id": "c362758a-eea3-4222-a687-5e3ab0af49bd",
+      "email": "dsarifkulo023@gmail.com",
+      "name": "Shoxrux",
+      "surname": "Shuxratov",
+      "password": "$2b$10$PaKtvKIa5gB0t5MWLu83qedtoEgbQhv3aE0X6h1rnehugStBarWXq",
+      "favorites": [],
+      "cart": []
     }
   ]
 }
