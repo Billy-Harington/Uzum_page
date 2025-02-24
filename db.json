@@ -944,6 +944,14 @@
     }
   ],
   "users": [
-  
+    {
+      "id": "a0766167-b8a1-4c14-94e2-a860963b59a6",
+      "email": "dsarifkulo021@gmail.com",
+      "name": "Shaxzod",
+      "surname": "Husanaliyev",
+      "password": "$2b$10$Hws63TvBWrP/rYkNDfZw7.ZmPuewhFvHAt/Ipsb3.CqJx1g11qxHm",
+      "favorites": [],
+      "cart": []
+    }
   ]
 }

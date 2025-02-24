@@ -16,7 +16,7 @@ goods.forEach((product) => {
 });
 
 
-const typesArray = Array.from(uniqueTypes);
+
 
 
 const typeCounts = goods.reduce((acc: Record<string, number>, product) => {
