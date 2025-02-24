@@ -8,6 +8,8 @@ import { calculateDiscountPrice } from "../../utils/percentage_calc";
 (async function () {
     const localed = JSON.parse(localStorage.getItem("user") || "{}");
     document.body.prepend(Header(localed.name));
+   
+    
 
     const savedPlace = document.querySelector(".cart_container") as HTMLElement;
     const section = document.querySelector(".cart") as HTMLElement;

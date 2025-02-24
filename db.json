@@ -989,24 +989,6 @@
       ],
       "cart": [
         {
-          "id": "15",
-          "title": "Видеокарта GIGABYTE RTX3090 GAMING OC-24G + монитор AORUS FV43U-EK",
-          "description": "Комплект, в состав которого входят видеокарта Gigabyte RTX3090 Gaming OC-24G и монитор Aorus FV43U-EK, создан для требовательного геймера.",
-          "colors": [
-            "black"
-          ],
-          "rating": 5,
-          "price": 2699999,
-          "isBlackFriday": false,
-          "salePercentage": 0,
-          "media": [
-            "https://img.mvideo.ru/Big/30058010bb.jpg",
-            "https://img.mvideo.ru/Big/30058010bb1.jpg",
-            "https://img.mvideo.ru/Big/30058010bb2.jpg"
-          ],
-          "type": "ПК"
-        },
-        {
           "id": "8",
           "title": "Кресло компьютерное игровое Bloody GC-100",
           "description": "Надоело проводить вечера перед монитором, ёрзая на неудобном стуле? Компания Bloody решила позаботиться о геймерах, готовых часами напролёт сражаться с врагами, решать головоломки, руководить бизнес-империями или полноценными армиями.",
@@ -1076,6 +1058,15 @@
           "type": "мебель"
         }
       ]
+    },
+    {
+      "id": "ce7b31b3-a2b6-4cb7-84ad-3b2a0533418a",
+      "email": "shaxruzr@gmail.com",
+      "name": "Shaxruz",
+      "surname": "Kayfullaev",
+      "password": "$2b$10$.us3Q.fZtVDPP27oi8.2j.BxXJyTDar6fXtqrZya1VE4mZQJ6PO3C",
+      "favorites": [],
+      "cart": []
     }
   ]
 }

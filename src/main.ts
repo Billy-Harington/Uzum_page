@@ -18,7 +18,7 @@ new HeroSlider(".slider-container");
 (async function () {
     const localed = JSON.parse(localStorage.getItem("user") || "{}");
     document.body.prepend(Header(localed.name));
-
+    console.log(localed);
     const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
     const goods = await apiCall.read("/goods") as Product_data[];
 

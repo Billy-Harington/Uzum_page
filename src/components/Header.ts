@@ -6,6 +6,7 @@ import { Product_data, User_data } from "../utils/types";
 
 const apiCall = new ApiClient(import.meta.env.VITE_PUBLIC_BASE_URL);
 const goods = await apiCall.read('/goods/') as Array<Product_data>;
+const updatedUser = await apiCall.read<User_data>(`/users/${user?.id}`);
 
 
 const uniqueTypes = new Set<string>();
@@ -27,9 +28,8 @@ const typeCounts = goods.reduce((acc: Record<string, number>, product) => {
   
 
 
-const updatedUser = await apiCall.read<User_data>(`/users/${user?.id}`);
-
-export function Header(item: string) {
+  
+  export  function Header(item: string) {
     const header = document.createElement("header");
     
     
